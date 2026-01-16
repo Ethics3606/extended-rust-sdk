@@ -1,0 +1,57 @@
+[package]
+name = "extended-rust-sdk"
+version = "0.1.3"
+edition = "2021"
+description = "Unofficial Rust SDK for the Extended crypto exchange (Starknet-based perpetual trading)"
+license = "MIT"
+repository = "https://github.com/ethics3606/extended-rust-sdk"
+authors = ["ethics3606 <https://x.com/ethics3606>"]
+
+[dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.93"
+reqwest = { version = "0.13.1", features = ["json", "native-tls"] }
+tokio = { version = "1.29.1", features = ["full"] }
+thiserror = "2.0.17"
+url = "2.4.0"
+rust_decimal = { version = "1.40.0", features = ["serde"] }
+serde_urlencoded = "0.7"
+
+# Stark signing library
+rust-crypto-lib-base = { git = "https://github.com/x10xchange/rust-crypto-lib-base" }
+starknet = { git = "https://github.com/xJonathanLEI/starknet-rs", tag = "starknet/v0.17.0" }
+starknet-crypto = "0.8.1"
+num-bigint = "0.4.6"
+
+[dev-dependencies]
+tokio-test = "0.4.5"
+rust_decimal_macros = "1.40"
+
+
+[[example]]
+name = "public_api"
+path = "examples/public_api.rs"
+
+[[example]]
+name = "account_info"
+path = "examples/account_info.rs"
+
+[[example]]
+name = "place_order"
+path = "examples/place_order.rs"
+
+[[example]]
+name = "debug_api"
+path = "examples/debug_api.rs"
+
+[[example]]
+name = "limit_order"
+path = "examples/limit_order.rs"
+
+[[example]]
+name = "debug_signing"
+path = "examples/debug_signing.rs"
+
+[[example]]
+name = "compare_signing"
+path = "examples/compare_signing.rs"
