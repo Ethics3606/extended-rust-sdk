@@ -35,15 +35,6 @@ where
     }
 }
 
-/// Helper to deserialize string numbers as u32.
-fn u32_from_string<'de, D>(deserializer: D) -> Result<u32, D::Error>
-where
-    D: Deserializer<'de>,
-{
-    let s: String = Deserialize::deserialize(deserializer)?;
-    s.parse::<u32>().map_err(serde::de::Error::custom)
-}
-
 /// Open position.
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -80,8 +71,8 @@ pub struct Position {
     #[serde(default, deserialize_with = "option_decimal_from_string")]
     pub value: Option<Decimal>,
     /// Position leverage.
-    #[serde(deserialize_with = "u32_from_string")]
-    pub leverage: u32,
+    #[serde(deserialize_with = "decimal_from_string")]
+    pub leverage: Decimal,
     /// Auto-deleveraging rank.
     #[serde(default)]
     pub adl: Option<i32>,
